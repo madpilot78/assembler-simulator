@@ -189,16 +189,44 @@ app.service('cpu', ['opcodes', 'memory', function(opcodes, memory) {
                         setGPR_SP(3,memory.load(indirectRegisterAddress(regFrom)));
                         self.ip++;
                         break;
-                    case opcodes.MOV_REG_TO_ADDRESS:
+                    case opcodes.MOV_REG_TO_ADDRESS_A:
                         memTo = memory.load(++self.ip);
-                        regFrom = checkGPR_SP(memory.load(++self.ip));
-                        memory.store(memTo, getGPR_SP(regFrom));
+                        memory.store(memTo, getGPR_SP(0));
                         self.ip++;
                         break;
-                    case opcodes.MOV_REG_TO_REGADDRESS:
+                    case opcodes.MOV_REG_TO_ADDRESS_B:
+                        memTo = memory.load(++self.ip);
+                        memory.store(memTo, getGPR_SP(1));
+                        self.ip++;
+                        break;
+                    case opcodes.MOV_REG_TO_ADDRESS_C:
+                        memTo = memory.load(++self.ip);
+                        memory.store(memTo, getGPR_SP(2));
+                        self.ip++;
+                        break;
+                    case opcodes.MOV_REG_TO_ADDRESS_D:
+                        memTo = memory.load(++self.ip);
+                        memory.store(memTo, getGPR_SP(3));
+                        self.ip++;
+                        break;
+                    case opcodes.MOV_REG_TO_REGADDRESS_A:
                         regTo = memory.load(++self.ip);
-                        regFrom = checkGPR_SP(memory.load(++self.ip));
-                        memory.store(indirectRegisterAddress(regTo), getGPR_SP(regFrom));
+                        memory.store(indirectRegisterAddress(regTo), getGPR_SP(0));
+                        self.ip++;
+                        break;
+                    case opcodes.MOV_REG_TO_REGADDRESS_B:
+                        regTo = memory.load(++self.ip);
+                        memory.store(indirectRegisterAddress(regTo), getGPR_SP(1));
+                        self.ip++;
+                        break;
+                    case opcodes.MOV_REG_TO_REGADDRESS_C:
+                        regTo = memory.load(++self.ip);
+                        memory.store(indirectRegisterAddress(regTo), getGPR_SP(2));
+                        self.ip++;
+                        break;
+                    case opcodes.MOV_REG_TO_REGADDRESS_D:
+                        regTo = memory.load(++self.ip);
+                        memory.store(indirectRegisterAddress(regTo), getGPR_SP(3));
                         self.ip++;
                         break;
                     case opcodes.MOV_NUMBER_TO_REG_A:

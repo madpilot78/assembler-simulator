@@ -240,9 +240,9 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     else if (p1.type === "register" && p2.type === "regaddress")
                                         opCode = opcodeOffset(opcodes.MOV_REGADDRESS_TO_REG_A, p1.value);
                                     else if (p1.type === "address" && p2.type === "register")
-                                        opCode = opcodes.MOV_REG_TO_ADDRESS;
+                                        opCode = opcodeOffset(opcodes.MOV_REG_TO_ADDRESS_A, p2.value);
                                     else if (p1.type === "regaddress" && p2.type === "register")
-                                        opCode = opcodes.MOV_REG_TO_REGADDRESS;
+                                        opCode = opcodeOffset(opcodes.MOV_REG_TO_REGADDRESS_A, p2.value);
                                     else if (p1.type === "register" && p2.type === "number")
                                         opCode = opcodeOffset(opcodes.MOV_NUMBER_TO_REG_A, p1.value);
                                     else if (p1.type === "address" && p2.type === "number")
@@ -254,6 +254,8 @@ app.service('assembler', ['opcodes', function (opcodes) {
 
                                     if (p1.type === "register") {
                                         code.push(opCode, p2.value);
+                                    } else if (p2.type === "register") {
+                                        code.push(opCode, p1.value);
                                     } else {
                                         code.push(opCode, p1.value, p2.value);
                                     }
