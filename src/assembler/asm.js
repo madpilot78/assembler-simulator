@@ -185,7 +185,7 @@ app.service('assembler', ['opcodes', function (opcodes) {
             };
 
             var opcodeOffset = function (base, reg) {
-                if (reg > 3)
+                if (reg > 4)
                     throw "Invalid register";
 
                 return base + reg;
