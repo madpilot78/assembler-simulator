@@ -238,7 +238,7 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     else if (p1.type === "register" && p2.type === "address")
                                         opCode = opcodeOffset(opcodes.MOV_ADDRESS_TO_REG_A, p1.value);
                                     else if (p1.type === "register" && p2.type === "regaddress")
-                                        opCode = opcodes.MOV_REGADDRESS_TO_REG;
+                                        opCode = opcodeOffset(opcodes.MOV_REGADDRESS_TO_REG_A, p1.value);
                                     else if (p1.type === "address" && p2.type === "register")
                                         opCode = opcodes.MOV_REG_TO_ADDRESS;
                                     else if (p1.type === "regaddress" && p2.type === "register")
@@ -252,7 +252,7 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     else
                                         throw "MOV does not support this operands";
 
-                                    if (p1.type === "register" && (p2.type === "number" || p2.type === "address" || p2.type === "register")) {
+                                    if (p1.type === "register") {
                                         code.push(opCode, p2.value);
                                     } else {
                                         code.push(opCode, p1.value, p2.value);
