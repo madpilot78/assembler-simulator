@@ -286,11 +286,31 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     checkNoExtraArg('INC', match[op2_group]);
 
                                     if (p1.type === "register")
-                                        opCode = opcodes.INC_REG;
+                                        switch (p1.value) {
+                                            case 0:
+                                                opCode = opcodes.INC_REGA;
+                                                break;
+
+                                            case 1:
+                                                opCode = opcodes.INC_REGB;
+                                                break;
+
+                                            case 2:
+                                                opCode = opcodes.INC_REGC;
+                                                break;
+
+                                            case 3:
+                                                opCode = opcodes.INC_REGD;
+                                                break;
+
+                                            default:
+                                                throw "Uknown register";
+                                                break;
+                                        }
                                     else
                                         throw "INC does not support this operand";
 
-                                    code.push(opCode, p1.value);
+                                    code.push(opCode);
 
                                     break;
                                 case 'DEC':
@@ -298,11 +318,31 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     checkNoExtraArg('DEC', match[op2_group]);
 
                                     if (p1.type === "register")
-                                        opCode = opcodes.DEC_REG;
+                                        switch (p1.value) {
+                                            case 0:
+                                                opCode = opcodes.DEC_REGA;
+                                                break;
+
+                                            case 1:
+                                                opCode = opcodes.DEC_REGB;
+                                                break;
+
+                                            case 2:
+                                                opCode = opcodes.DEC_REGC;
+                                                break;
+
+                                            case 3:
+                                                opCode = opcodes.DEC_REGD;
+                                                break;
+
+                                            default:
+                                                throw "Uknown register";
+                                                break;
+                                        }
                                     else
                                         throw "DEC does not support this operand";
 
-                                    code.push(opCode, p1.value);
+                                    code.push(opCode);
 
                                     break;
                                 case 'CMP':
@@ -426,7 +466,27 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     checkNoExtraArg(instr, match[op2_group]);
 
                                     if (p1.type === "register")
-                                        opCode = opcodes.PUSH_REG;
+                                        switch (p1.value) {
+                                            case 0:
+                                                opCode = opcodes.PUSH_REGA;
+                                                break;
+
+                                            case 1:
+                                                opCode = opcodes.PUSH_REGB;
+                                                break;
+
+                                            case 2:
+                                                opCode = opcodes.PUSH_REGC;
+                                                break;
+
+                                            case 3:
+                                                opCode = opcodes.PUSH_REGD;
+                                                break;
+
+                                            default:
+                                                throw "Uknown register";
+                                                break;
+                                        }
                                     else if (p1.type === "regaddress")
                                         opCode = opcodes.PUSH_REGADDRESS;
                                     else if (p1.type === "address")
@@ -436,18 +496,46 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     else
                                         throw "PUSH does not support this operand";
 
-                                    code.push(opCode, p1.value);
+                                    if (p1.type === "register") {
+                                        code.push(opCode);
+                                    } else {
+                                        code.push(opCode, p1.value);
+                                    }
                                     break;
                                 case 'POP':
                                     p1 = getValue(match[op1_group]);
                                     checkNoExtraArg(instr, match[op2_group]);
 
                                     if (p1.type === "register")
-                                        opCode = opcodes.POP_REG;
+                                        switch (p1.value) {
+                                            case 0:
+                                                opCode = opcodes.POP_REGA;
+                                                break;
+
+                                            case 1:
+                                                opCode = opcodes.POP_REGB;
+                                                break;
+
+                                            case 2:
+                                                opCode = opcodes.POP_REGC;
+                                                break;
+
+                                            case 3:
+                                                opCode = opcodes.POP_REGD;
+                                                break;
+
+                                            default:
+                                                throw "Uknown register";
+                                                break;
+                                        }
                                     else
                                         throw "PUSH does not support this operand";
 
-                                    code.push(opCode, p1.value);
+                                    if (p1.type === "register") {
+                                        code.push(opCode);
+                                    } else {
+                                        code.push(opCode, p1.value);
+                                    }
                                     break;
                                 case 'CALL':
                                     p1 = getValue(match[op1_group]);
