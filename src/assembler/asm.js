@@ -239,19 +239,19 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     else if (p1.type === "register" && p2.type === "number")
                                         switch (p1.value) {
                                             case 0:
-                                                opCode = opcodes.MOV_NUMBER_TO_REGA;
+                                                opCode = opcodes.MOV_NUMBER_TO_REG_A;
                                                 break;
 
                                             case 1:
-                                                opCode = opcodes.MOV_NUMBER_TO_REGB;
+                                                opCode = opcodes.MOV_NUMBER_TO_REG_B;
                                                 break;
 
                                             case 2:
-                                                opCode = opcodes.MOV_NUMBER_TO_REGC;
+                                                opCode = opcodes.MOV_NUMBER_TO_REG_C;
                                                 break;
 
                                             case 3:
-                                                opCode = opcodes.MOV_NUMBER_TO_REGD;
+                                                opCode = opcodes.MOV_NUMBER_TO_REG_D;
                                                 break;
 
                                             default:
@@ -312,19 +312,19 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     if (p1.type === "register")
                                         switch (p1.value) {
                                             case 0:
-                                                opCode = opcodes.INC_REGA;
+                                                opCode = opcodes.INC_REG_A;
                                                 break;
 
                                             case 1:
-                                                opCode = opcodes.INC_REGB;
+                                                opCode = opcodes.INC_REG_B;
                                                 break;
 
                                             case 2:
-                                                opCode = opcodes.INC_REGC;
+                                                opCode = opcodes.INC_REG_C;
                                                 break;
 
                                             case 3:
-                                                opCode = opcodes.INC_REGD;
+                                                opCode = opcodes.INC_REG_D;
                                                 break;
 
                                             default:
@@ -344,19 +344,19 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     if (p1.type === "register")
                                         switch (p1.value) {
                                             case 0:
-                                                opCode = opcodes.DEC_REGA;
+                                                opCode = opcodes.DEC_REG_A;
                                                 break;
 
                                             case 1:
-                                                opCode = opcodes.DEC_REGB;
+                                                opCode = opcodes.DEC_REG_B;
                                                 break;
 
                                             case 2:
-                                                opCode = opcodes.DEC_REGC;
+                                                opCode = opcodes.DEC_REG_C;
                                                 break;
 
                                             case 3:
-                                                opCode = opcodes.DEC_REGD;
+                                                opCode = opcodes.DEC_REG_D;
                                                 break;
 
                                             default:
@@ -492,19 +492,19 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     if (p1.type === "register")
                                         switch (p1.value) {
                                             case 0:
-                                                opCode = opcodes.PUSH_REGA;
+                                                opCode = opcodes.PUSH_REG_A;
                                                 break;
 
                                             case 1:
-                                                opCode = opcodes.PUSH_REGB;
+                                                opCode = opcodes.PUSH_REG_B;
                                                 break;
 
                                             case 2:
-                                                opCode = opcodes.PUSH_REGC;
+                                                opCode = opcodes.PUSH_REG_C;
                                                 break;
 
                                             case 3:
-                                                opCode = opcodes.PUSH_REGD;
+                                                opCode = opcodes.PUSH_REG_D;
                                                 break;
 
                                             default:
@@ -533,19 +533,19 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     if (p1.type === "register")
                                         switch (p1.value) {
                                             case 0:
-                                                opCode = opcodes.POP_REGA;
+                                                opCode = opcodes.POP_REG_A;
                                                 break;
 
                                             case 1:
-                                                opCode = opcodes.POP_REGB;
+                                                opCode = opcodes.POP_REG_B;
                                                 break;
 
                                             case 2:
-                                                opCode = opcodes.POP_REGC;
+                                                opCode = opcodes.POP_REG_C;
                                                 break;
 
                                             case 3:
-                                                opCode = opcodes.POP_REGD;
+                                                opCode = opcodes.POP_REG_D;
                                                 break;
 
                                             default:

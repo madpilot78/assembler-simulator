@@ -159,22 +159,22 @@ app.service('cpu', ['opcodes', 'memory', function(opcodes, memory) {
                         memory.store(indirectRegisterAddress(regTo), getGPR_SP(regFrom));
                         self.ip++;
                         break;
-                    case opcodes.MOV_NUMBER_TO_REGA:
+                    case opcodes.MOV_NUMBER_TO_REG_A:
                         number = memory.load(++self.ip);
                         setGPR_SP(0,number);
                         self.ip++;
                         break;
-                    case opcodes.MOV_NUMBER_TO_REGB:
+                    case opcodes.MOV_NUMBER_TO_REG_B:
                         number = memory.load(++self.ip);
                         setGPR_SP(1,number);
                         self.ip++;
                         break;
-                    case opcodes.MOV_NUMBER_TO_REGC:
+                    case opcodes.MOV_NUMBER_TO_REG_C:
                         number = memory.load(++self.ip);
                         setGPR_SP(2,number);
                         self.ip++;
                         break;
-                    case opcodes.MOV_NUMBER_TO_REGD:
+                    case opcodes.MOV_NUMBER_TO_REG_D:
                         number = memory.load(++self.ip);
                         setGPR_SP(3,number);
                         self.ip++;
@@ -239,35 +239,35 @@ app.service('cpu', ['opcodes', 'memory', function(opcodes, memory) {
                         setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - number));
                         self.ip++;
                         break;
-                    case opcodes.INC_REGA:
+                    case opcodes.INC_REG_A:
                         setGPR_SP(0,checkOperation(getGPR_SP(0) + 1));
                         self.ip++;
                         break;
-                    case opcodes.INC_REGB:
+                    case opcodes.INC_REG_B:
                         setGPR_SP(1,checkOperation(getGPR_SP(1) + 1));
                         self.ip++;
                         break;
-                    case opcodes.INC_REGC:
+                    case opcodes.INC_REG_C:
                         setGPR_SP(2,checkOperation(getGPR_SP(2) + 1));
                         self.ip++;
                         break;
-                    case opcodes.INC_REGD:
+                    case opcodes.INC_REG_D:
                         setGPR_SP(3,checkOperation(getGPR_SP(3) + 1));
                         self.ip++;
                         break;
-                    case opcodes.DEC_REGA:
+                    case opcodes.DEC_REG_A:
                         setGPR_SP(0,checkOperation(getGPR_SP(0) - 1));
                         self.ip++;
                         break;
-                    case opcodes.DEC_REGB:
+                    case opcodes.DEC_REG_B:
                         setGPR_SP(1,checkOperation(getGPR_SP(1) - 1));
                         self.ip++;
                         break;
-                    case opcodes.DEC_REGC:
+                    case opcodes.DEC_REG_C:
                         setGPR_SP(2,checkOperation(getGPR_SP(2) - 1));
                         self.ip++;
                         break;
-                    case opcodes.DEC_REGD:
+                    case opcodes.DEC_REG_D:
                         setGPR_SP(3,checkOperation(getGPR_SP(3) - 1));
                         self.ip++;
                         break;
@@ -399,19 +399,19 @@ app.service('cpu', ['opcodes', 'memory', function(opcodes, memory) {
                             self.ip++;
                         }
                         break;
-                    case opcodes.PUSH_REGA:
+                    case opcodes.PUSH_REG_A:
                         push(self.gpr[0]);
                         self.ip++;
                         break;
-                    case opcodes.PUSH_REGB:
+                    case opcodes.PUSH_REG_B:
                         push(self.gpr[1]);
                         self.ip++;
                         break;
-                    case opcodes.PUSH_REGC:
+                    case opcodes.PUSH_REG_C:
                         push(self.gpr[2]);
                         self.ip++;
                         break;
-                    case opcodes.PUSH_REGD:
+                    case opcodes.PUSH_REG_D:
                         push(self.gpr[3]);
                         self.ip++;
                         break;
@@ -430,19 +430,19 @@ app.service('cpu', ['opcodes', 'memory', function(opcodes, memory) {
                         push(number);
                         self.ip++;
                         break;
-                    case opcodes.POP_REGA:
+                    case opcodes.POP_REG_A:
                         self.gpr[0] = pop();
                         self.ip++;
                         break;
-                    case opcodes.POP_REGB:
+                    case opcodes.POP_REG_B:
                         self.gpr[1] = pop();
                         self.ip++;
                         break;
-                    case opcodes.POP_REGC:
+                    case opcodes.POP_REG_C:
                         self.gpr[2] = pop();
                         self.ip++;
                         break;
-                    case opcodes.POP_REGD:
+                    case opcodes.POP_REG_D:
                         self.gpr[3] = pop();
                         self.ip++;
                         break;
