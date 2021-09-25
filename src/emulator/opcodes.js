@@ -1,7 +1,10 @@
 app.service('opcodes', [function() {
     var opcodes = {
         NONE: 0,
-        MOV_REG_TO_REG: 1,
+        MOV_REG_TO_REG_A: 1,
+        MOV_REG_TO_REG_B: 2,
+        MOV_REG_TO_REG_C: 3,
+        MOV_REG_TO_REG_D: 4,
         MOV_ADDRESS_TO_REG: 5,
         MOV_REGADDRESS_TO_REG: 9,
         MOV_REG_TO_ADDRESS: 13,

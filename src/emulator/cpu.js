@@ -129,10 +129,24 @@ app.service('cpu', ['opcodes', 'memory', function(opcodes, memory) {
                 switch(instr) {
                     case opcodes.NONE:
                         return false; // Abort step
-                    case opcodes.MOV_REG_TO_REG:
-                        regTo = checkGPR_SP(memory.load(++self.ip));
+                    case opcodes.MOV_REG_TO_REG_A:
                         regFrom = checkGPR_SP(memory.load(++self.ip));
-                        setGPR_SP(regTo,getGPR_SP(regFrom));
+                        setGPR_SP(0,getGPR_SP(regFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.MOV_REG_TO_REG_B:
+                        regFrom = checkGPR_SP(memory.load(++self.ip));
+                        setGPR_SP(1,getGPR_SP(regFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.MOV_REG_TO_REG_C:
+                        regFrom = checkGPR_SP(memory.load(++self.ip));
+                        setGPR_SP(2,getGPR_SP(regFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.MOV_REG_TO_REG_D:
+                        regFrom = checkGPR_SP(memory.load(++self.ip));
+                        setGPR_SP(3,getGPR_SP(regFrom));
                         self.ip++;
                         break;
                     case opcodes.MOV_ADDRESS_TO_REG:
