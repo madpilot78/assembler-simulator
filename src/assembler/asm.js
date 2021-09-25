@@ -184,6 +184,13 @@ app.service('assembler', ['opcodes', function (opcodes) {
                 }
             };
 
+            var opcodeOffset = function (base, reg) {
+                if (reg > 3)
+                    throw "Invalid register";
+
+                return base + reg;
+            };
+
             for (var i = 0, l = lines.length; i < l; i++) {
                 try {
                     var match = regex.exec(lines[i]);
@@ -227,49 +234,9 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     p2 = getValue(match[op2_group]);
 
                                     if (p1.type === "register" && p2.type === "register")
-                                        switch (p2.value) {
-                                            case 0:
-                                                opCode = opcodes.MOV_REG_TO_REG_A;
-                                                break;
-
-                                            case 1:
-                                                opCode = opcodes.MOV_REG_TO_REG_B;
-                                                break;
-
-                                            case 2:
-                                                opCode = opcodes.MOV_REG_TO_REG_C;
-                                                break;
-
-                                            case 3:
-                                                opCode = opcodes.MOV_REG_TO_REG_D;
-                                                break;
-
-                                            default:
-                                                throw "Uknown register";
-                                                break;
-                                        }
+                                        opCode = opcodeOffset(opcodes.MOV_REG_TO_REG_A, p1.value);
                                     else if (p1.type === "register" && p2.type === "address")
-                                        switch (p1.value) {
-                                            case 0:
-                                                opCode = opcodes.MOV_ADDRESS_TO_REG_A;
-                                                break;
-
-                                            case 1:
-                                                opCode = opcodes.MOV_ADDRESS_TO_REG_B;
-                                                break;
-
-                                            case 2:
-                                                opCode = opcodes.MOV_ADDRESS_TO_REG_C;
-                                                break;
-
-                                            case 3:
-                                                opCode = opcodes.MOV_ADDRESS_TO_REG_D;
-                                                break;
-
-                                            default:
-                                                throw "Uknown register";
-                                                break;
-                                        }
+                                        opCode = opcodeOffset(opcodes.MOV_ADDRESS_TO_REG_A, p1.value);
                                     else if (p1.type === "register" && p2.type === "regaddress")
                                         opCode = opcodes.MOV_REGADDRESS_TO_REG;
                                     else if (p1.type === "address" && p2.type === "register")
@@ -277,27 +244,7 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     else if (p1.type === "regaddress" && p2.type === "register")
                                         opCode = opcodes.MOV_REG_TO_REGADDRESS;
                                     else if (p1.type === "register" && p2.type === "number")
-                                        switch (p1.value) {
-                                            case 0:
-                                                opCode = opcodes.MOV_NUMBER_TO_REG_A;
-                                                break;
-
-                                            case 1:
-                                                opCode = opcodes.MOV_NUMBER_TO_REG_B;
-                                                break;
-
-                                            case 2:
-                                                opCode = opcodes.MOV_NUMBER_TO_REG_C;
-                                                break;
-
-                                            case 3:
-                                                opCode = opcodes.MOV_NUMBER_TO_REG_D;
-                                                break;
-
-                                            default:
-                                                throw "Uknown register";
-                                                break;
-                                        }
+                                        opCode = opcodeOffset(opcodes.MOV_NUMBER_TO_REG_A, p1.value);
                                     else if (p1.type === "address" && p2.type === "number")
                                         opCode = opcodes.MOV_NUMBER_TO_ADDRESS;
                                     else if (p1.type === "regaddress" && p2.type === "number")
@@ -305,9 +252,7 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     else
                                         throw "MOV does not support this operands";
 
-                                    if (p1.type === "register" && p2.type === "register") {
-                                        code.push(opCode, p1.value);
-                                    } else if (p1.type === "register" && (p2.type === "number" || p2.type === "address")) {
+                                    if (p1.type === "register" && (p2.type === "number" || p2.type === "address" || p2.type === "register")) {
                                         code.push(opCode, p2.value);
                                     } else {
                                         code.push(opCode, p1.value, p2.value);
@@ -352,27 +297,7 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     checkNoExtraArg('INC', match[op2_group]);
 
                                     if (p1.type === "register")
-                                        switch (p1.value) {
-                                            case 0:
-                                                opCode = opcodes.INC_REG_A;
-                                                break;
-
-                                            case 1:
-                                                opCode = opcodes.INC_REG_B;
-                                                break;
-
-                                            case 2:
-                                                opCode = opcodes.INC_REG_C;
-                                                break;
-
-                                            case 3:
-                                                opCode = opcodes.INC_REG_D;
-                                                break;
-
-                                            default:
-                                                throw "Uknown register";
-                                                break;
-                                        }
+                                        opCode = opcodeOffset(opcodes.INC_REG_A, p1.value);
                                     else
                                         throw "INC does not support this operand";
 
@@ -384,27 +309,7 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     checkNoExtraArg('DEC', match[op2_group]);
 
                                     if (p1.type === "register")
-                                        switch (p1.value) {
-                                            case 0:
-                                                opCode = opcodes.DEC_REG_A;
-                                                break;
-
-                                            case 1:
-                                                opCode = opcodes.DEC_REG_B;
-                                                break;
-
-                                            case 2:
-                                                opCode = opcodes.DEC_REG_C;
-                                                break;
-
-                                            case 3:
-                                                opCode = opcodes.DEC_REG_D;
-                                                break;
-
-                                            default:
-                                                throw "Uknown register";
-                                                break;
-                                        }
+                                        opCode = opcodeOffset(opcodes.DEC_REG_A, p1.value);
                                     else
                                         throw "DEC does not support this operand";
 
@@ -532,27 +437,7 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     checkNoExtraArg(instr, match[op2_group]);
 
                                     if (p1.type === "register")
-                                        switch (p1.value) {
-                                            case 0:
-                                                opCode = opcodes.PUSH_REG_A;
-                                                break;
-
-                                            case 1:
-                                                opCode = opcodes.PUSH_REG_B;
-                                                break;
-
-                                            case 2:
-                                                opCode = opcodes.PUSH_REG_C;
-                                                break;
-
-                                            case 3:
-                                                opCode = opcodes.PUSH_REG_D;
-                                                break;
-
-                                            default:
-                                                throw "Uknown register";
-                                                break;
-                                        }
+                                        opCode = opcodeOffset(opcodes.PUSH_REG_A, p1.value);
                                     else if (p1.type === "regaddress")
                                         opCode = opcodes.PUSH_REGADDRESS;
                                     else if (p1.type === "address")
@@ -573,27 +458,7 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     checkNoExtraArg(instr, match[op2_group]);
 
                                     if (p1.type === "register")
-                                        switch (p1.value) {
-                                            case 0:
-                                                opCode = opcodes.POP_REG_A;
-                                                break;
-
-                                            case 1:
-                                                opCode = opcodes.POP_REG_B;
-                                                break;
-
-                                            case 2:
-                                                opCode = opcodes.POP_REG_C;
-                                                break;
-
-                                            case 3:
-                                                opCode = opcodes.POP_REG_D;
-                                                break;
-
-                                            default:
-                                                throw "Uknown register";
-                                                break;
-                                        }
+                                        opCode = opcodeOffset(opcodes.POP_REG_A, p1.value);
                                     else
                                         throw "PUSH does not support this operand";
 
