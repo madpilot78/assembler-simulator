@@ -159,10 +159,24 @@ app.service('cpu', ['opcodes', 'memory', function(opcodes, memory) {
                         memory.store(indirectRegisterAddress(regTo), getGPR_SP(regFrom));
                         self.ip++;
                         break;
-                    case opcodes.MOV_NUMBER_TO_REG:
-                        regTo = checkGPR_SP(memory.load(++self.ip));
+                    case opcodes.MOV_NUMBER_TO_REGA:
                         number = memory.load(++self.ip);
-                        setGPR_SP(regTo,number);
+                        setGPR_SP(0,number);
+                        self.ip++;
+                        break;
+                    case opcodes.MOV_NUMBER_TO_REGB:
+                        number = memory.load(++self.ip);
+                        setGPR_SP(1,number);
+                        self.ip++;
+                        break;
+                    case opcodes.MOV_NUMBER_TO_REGC:
+                        number = memory.load(++self.ip);
+                        setGPR_SP(2,number);
+                        self.ip++;
+                        break;
+                    case opcodes.MOV_NUMBER_TO_REGD:
+                        number = memory.load(++self.ip);
+                        setGPR_SP(3,number);
                         self.ip++;
                         break;
                     case opcodes.MOV_NUMBER_TO_ADDRESS:

@@ -237,7 +237,27 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     else if (p1.type === "regaddress" && p2.type === "register")
                                         opCode = opcodes.MOV_REG_TO_REGADDRESS;
                                     else if (p1.type === "register" && p2.type === "number")
-                                        opCode = opcodes.MOV_NUMBER_TO_REG;
+                                        switch (p1.value) {
+                                            case 0:
+                                                opCode = opcodes.MOV_NUMBER_TO_REGA;
+                                                break;
+
+                                            case 1:
+                                                opCode = opcodes.MOV_NUMBER_TO_REGB;
+                                                break;
+
+                                            case 2:
+                                                opCode = opcodes.MOV_NUMBER_TO_REGC;
+                                                break;
+
+                                            case 3:
+                                                opCode = opcodes.MOV_NUMBER_TO_REGD;
+                                                break;
+
+                                            default:
+                                                throw "Uknown register";
+                                                break;
+                                        }
                                     else if (p1.type === "address" && p2.type === "number")
                                         opCode = opcodes.MOV_NUMBER_TO_ADDRESS;
                                     else if (p1.type === "regaddress" && p2.type === "number")
@@ -245,7 +265,11 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     else
                                         throw "MOV does not support this operands";
 
-                                    code.push(opCode, p1.value, p2.value);
+                                    if (p1.type === "register" && p2.type === "number") {
+                                        code.push(opCode, p2.value);
+                                    } else {
+                                        code.push(opCode, p1.value, p2.value);
+                                    }
                                     break;
                                 case 'ADD':
                                     p1 = getValue(match[op1_group]);
