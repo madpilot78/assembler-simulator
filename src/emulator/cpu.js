@@ -965,127 +965,502 @@ app.service('cpu', ['opcodes', 'memory', function(opcodes, memory) {
                         self.gpr[0] = checkOperation(division(number));
                         self.ip++;
                         break;
-                    case opcodes.AND_REG_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.AND_REG_WITH_REG_A:
+                        regTo = 0;
                         regFrom = checkGPR(memory.load(++self.ip));
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] & self.gpr[regFrom]);
                         self.ip++;
                         break;
-                    case opcodes.AND_REGADDRESS_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.AND_REG_WITH_REG_B:
+                        regTo = 1;
+                        regFrom = checkGPR(memory.load(++self.ip));
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] & self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.AND_REG_WITH_REG_C:
+                        regTo = 2;
+                        regFrom = checkGPR(memory.load(++self.ip));
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] & self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.AND_REG_WITH_REG_D:
+                        regTo = 3;
+                        regFrom = checkGPR(memory.load(++self.ip));
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] & self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.AND_REGADDRESS_WITH_REG_A:
+                        regTo = 0;
                         regFrom = memory.load(++self.ip);
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] & memory.load(indirectRegisterAddress(regFrom)));
                         self.ip++;
                         break;
-                    case opcodes.AND_ADDRESS_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.AND_REGADDRESS_WITH_REG_B:
+                        regTo = 1;
+                        regFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] & memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.AND_REGADDRESS_WITH_REG_C:
+                        regTo = 2;
+                        regFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] & memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.AND_REGADDRESS_WITH_REG_D:
+                        regTo = 3;
+                        regFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] & memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.AND_ADDRESS_WITH_REG_A:
+                        regTo = 0;
                         memFrom = memory.load(++self.ip);
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] & memory.load(memFrom));
                         self.ip++;
                         break;
-                    case opcodes.AND_NUMBER_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.AND_ADDRESS_WITH_REG_B:
+                        regTo = 1;
+                        memFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] & memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.AND_ADDRESS_WITH_REG_C:
+                        regTo = 2;
+                        memFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] & memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.AND_ADDRESS_WITH_REG_D:
+                        regTo = 3;
+                        memFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] & memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.AND_NUMBER_WITH_REG_A:
+                        regTo = 0;
                         number = memory.load(++self.ip);
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] & number);
                         self.ip++;
                         break;
-                    case opcodes.OR_REG_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.AND_NUMBER_WITH_REG_B:
+                        regTo = 1;
+                        number = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] & number);
+                        self.ip++;
+                        break;
+                    case opcodes.AND_NUMBER_WITH_REG_C:
+                        regTo = 2;
+                        number = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] & number);
+                        self.ip++;
+                        break;
+                    case opcodes.AND_NUMBER_WITH_REG_D:
+                        regTo = 3;
+                        number = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] & number);
+                        self.ip++;
+                        break;
+                    case opcodes.OR_REG_WITH_REG_A:
+                        regTo = 0;
                         regFrom = checkGPR(memory.load(++self.ip));
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] | self.gpr[regFrom]);
                         self.ip++;
                         break;
-                    case opcodes.OR_REGADDRESS_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.OR_REG_WITH_REG_B:
+                        regTo = 1;
+                        regFrom = checkGPR(memory.load(++self.ip));
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] | self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.OR_REG_WITH_REG_C:
+                        regTo = 2;
+                        regFrom = checkGPR(memory.load(++self.ip));
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] | self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.OR_REG_WITH_REG_D:
+                        regTo = 3;
+                        regFrom = checkGPR(memory.load(++self.ip));
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] | self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.OR_REGADDRESS_WITH_REG_A:
+                        regTo = 0;
                         regFrom = memory.load(++self.ip);
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] | memory.load(indirectRegisterAddress(regFrom)));
                         self.ip++;
                         break;
-                    case opcodes.OR_ADDRESS_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.OR_REGADDRESS_WITH_REG_B:
+                        regTo = 1;
+                        regFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] | memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.OR_REGADDRESS_WITH_REG_C:
+                        regTo = 2;
+                        regFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] | memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.OR_REGADDRESS_WITH_REG_D:
+                        regTo = 3;
+                        regFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] | memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.OR_ADDRESS_WITH_REG_A:
+                        regTo = 0;
                         memFrom = memory.load(++self.ip);
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] | memory.load(memFrom));
                         self.ip++;
                         break;
-                    case opcodes.OR_NUMBER_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.OR_ADDRESS_WITH_REG_B:
+                        regTo = 1;
+                        memFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] | memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.OR_ADDRESS_WITH_REG_C:
+                        regTo = 2;
+                        memFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] | memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.OR_ADDRESS_WITH_REG_D:
+                        regTo = 3;
+                        memFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] | memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.OR_NUMBER_WITH_REG_A:
+                        regTo = 0;
                         number = memory.load(++self.ip);
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] | number);
                         self.ip++;
                         break;
-                    case opcodes.XOR_REG_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.OR_NUMBER_WITH_REG_B:
+                        regTo = 1;
+                        number = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] | number);
+                        self.ip++;
+                        break;
+                    case opcodes.OR_NUMBER_WITH_REG_C:
+                        regTo = 2;
+                        number = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] | number);
+                        self.ip++;
+                        break;
+                    case opcodes.OR_NUMBER_WITH_REG_D:
+                        regTo = 3;
+                        number = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] | number);
+                        self.ip++;
+                        break;
+                    case opcodes.XOR_REG_WITH_REG_A:
+                        regTo = 0;
                         regFrom = checkGPR(memory.load(++self.ip));
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ self.gpr[regFrom]);
                         self.ip++;
                         break;
-                    case opcodes.XOR_REGADDRESS_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.XOR_REG_WITH_REG_B:
+                        regTo = 1;
+                        regFrom = checkGPR(memory.load(++self.ip));
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.XOR_REG_WITH_REG_C:
+                        regTo = 2;
+                        regFrom = checkGPR(memory.load(++self.ip));
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.XOR_REG_WITH_REG_D:
+                        regTo = 3;
+                        regFrom = checkGPR(memory.load(++self.ip));
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.XOR_REGADDRESS_WITH_REG_A:
+                        regTo = 0;
                         regFrom = memory.load(++self.ip);
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ memory.load(indirectRegisterAddress(regFrom)));
                         self.ip++;
                         break;
-                    case opcodes.XOR_ADDRESS_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.XOR_REGADDRESS_WITH_REG_B:
+                        regTo = 1;
+                        regFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.XOR_REGADDRESS_WITH_REG_C:
+                        regTo = 2;
+                        regFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.XOR_REGADDRESS_WITH_REG_D:
+                        regTo = 3;
+                        regFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.XOR_ADDRESS_WITH_REG_A:
+                        regTo = 0;
                         memFrom = memory.load(++self.ip);
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ memory.load(memFrom));
                         self.ip++;
                         break;
-                    case opcodes.XOR_NUMBER_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.XOR_ADDRESS_WITH_REG_B:
+                        regTo = 1;
+                        memFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.XOR_ADDRESS_WITH_REG_C:
+                        regTo = 2;
+                        memFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.XOR_ADDRESS_WITH_REG_D:
+                        regTo = 3;
+                        memFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.XOR_NUMBER_WITH_REG_A:
+                        regTo = 0;
                         number = memory.load(++self.ip);
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ number);
                         self.ip++;
                         break;
-                    case opcodes.NOT_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.XOR_NUMBER_WITH_REG_B:
+                        regTo = 1;
+                        number = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ number);
+                        self.ip++;
+                        break;
+                    case opcodes.XOR_NUMBER_WITH_REG_C:
+                        regTo = 2;
+                        number = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ number);
+                        self.ip++;
+                        break;
+                    case opcodes.XOR_NUMBER_WITH_REG_D:
+                        regTo = 3;
+                        number = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] ^ number);
+                        self.ip++;
+                        break;
+                    case opcodes.NOT_REG_A:
+                        regTo = 0;
                         self.gpr[regTo] = checkOperation(~self.gpr[regTo]);
                         self.ip++;
                         break;
-                    case opcodes.SHL_REG_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.NOT_REG_B:
+                        regTo = 1;
+                        self.gpr[regTo] = checkOperation(~self.gpr[regTo]);
+                        self.ip++;
+                        break;
+                    case opcodes.NOT_REG_C:
+                        regTo = 2;
+                        self.gpr[regTo] = checkOperation(~self.gpr[regTo]);
+                        self.ip++;
+                        break;
+                    case opcodes.NOT_REG_D:
+                        regTo = 3;
+                        self.gpr[regTo] = checkOperation(~self.gpr[regTo]);
+                        self.ip++;
+                        break;
+                    case opcodes.SHL_REG_WITH_REG_A:
+                        regTo = 0;
                         regFrom = checkGPR(memory.load(++self.ip));
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] << self.gpr[regFrom]);
                         self.ip++;
                         break;
-                    case opcodes.SHL_REGADDRESS_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.SHL_REG_WITH_REG_B:
+                        regTo = 1;
+                        regFrom = checkGPR(memory.load(++self.ip));
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] << self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.SHL_REG_WITH_REG_C:
+                        regTo = 2;
+                        regFrom = checkGPR(memory.load(++self.ip));
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] << self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.SHL_REG_WITH_REG_D:
+                        regTo = 3;
+                        regFrom = checkGPR(memory.load(++self.ip));
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] << self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.SHL_REGADDRESS_WITH_REG_A:
+                        regTo = 0;
                         regFrom = memory.load(++self.ip);
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] << memory.load(indirectRegisterAddress(regFrom)));
                         self.ip++;
                         break;
-                    case opcodes.SHL_ADDRESS_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.SHL_REGADDRESS_WITH_REG_B:
+                        regTo = 1;
+                        regFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] << memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.SHL_REGADDRESS_WITH_REG_C:
+                        regTo = 2;
+                        regFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] << memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.SHL_REGADDRESS_WITH_REG_D:
+                        regTo = 3;
+                        regFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] << memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.SHL_ADDRESS_WITH_REG_A:
+                        regTo = 0;
                         memFrom = memory.load(++self.ip);
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] << memory.load(memFrom));
                         self.ip++;
                         break;
-                    case opcodes.SHL_NUMBER_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.SHL_ADDRESS_WITH_REG_B:
+                        regTo = 1;
+                        memFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] << memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.SHL_ADDRESS_WITH_REG_C:
+                        regTo = 2;
+                        memFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] << memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.SHL_ADDRESS_WITH_REG_D:
+                        regTo = 3;
+                        memFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] << memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.SHL_NUMBER_WITH_REG_A:
+                        regTo = 0;
                         number = memory.load(++self.ip);
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] << number);
                         self.ip++;
                         break;
-                    case opcodes.SHR_REG_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.SHL_NUMBER_WITH_REG_B:
+                        regTo = 1;
+                        number = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] << number);
+                        self.ip++;
+                        break;
+                    case opcodes.SHL_NUMBER_WITH_REG_C:
+                        regTo = 2;
+                        number = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] << number);
+                        self.ip++;
+                        break;
+                    case opcodes.SHL_NUMBER_WITH_REG_D:
+                        regTo = 3;
+                        number = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] << number);
+                        self.ip++;
+                        break;
+                    case opcodes.SHR_REG_WITH_REG_A:
+                        regTo = 0;
                         regFrom = checkGPR(memory.load(++self.ip));
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> self.gpr[regFrom]);
                         self.ip++;
                         break;
-                    case opcodes.SHR_REGADDRESS_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.SHR_REG_WITH_REG_B:
+                        regTo = 1;
+                        regFrom = checkGPR(memory.load(++self.ip));
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.SHR_REG_WITH_REG_C:
+                        regTo = 2;
+                        regFrom = checkGPR(memory.load(++self.ip));
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.SHR_REG_WITH_REG_D:
+                        regTo = 3;
+                        regFrom = checkGPR(memory.load(++self.ip));
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.SHR_REGADDRESS_WITH_REG_A:
+                        regTo = 0;
                         regFrom = memory.load(++self.ip);
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> memory.load(indirectRegisterAddress(regFrom)));
                         self.ip++;
                         break;
-                    case opcodes.SHR_ADDRESS_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.SHR_REGADDRESS_WITH_REG_B:
+                        regTo = 1;
+                        regFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.SHR_REGADDRESS_WITH_REG_C:
+                        regTo = 2;
+                        regFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.SHR_REGADDRESS_WITH_REG_D:
+                        regTo = 3;
+                        regFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.SHR_ADDRESS_WITH_REG_A:
+                        regTo = 0;
                         memFrom = memory.load(++self.ip);
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> memory.load(memFrom));
                         self.ip++;
                         break;
-                    case opcodes.SHR_NUMBER_WITH_REG:
-                        regTo = checkGPR(memory.load(++self.ip));
+                    case opcodes.SHR_ADDRESS_WITH_REG_B:
+                        regTo = 1;
+                        memFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.SHR_ADDRESS_WITH_REG_C:
+                        regTo = 2;
+                        memFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.SHR_ADDRESS_WITH_REG_D:
+                        regTo = 3;
+                        memFrom = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.SHR_NUMBER_WITH_REG_A:
+                        regTo = 0;
+                        number = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> number);
+                        self.ip++;
+                        break;
+                    case opcodes.SHR_NUMBER_WITH_REG_B:
+                        regTo = 1;
+                        number = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> number);
+                        self.ip++;
+                        break;
+                    case opcodes.SHR_NUMBER_WITH_REG_C:
+                        regTo = 2;
+                        number = memory.load(++self.ip);
+                        self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> number);
+                        self.ip++;
+                        break;
+                    case opcodes.SHR_NUMBER_WITH_REG_D:
+                        regTo = 3;
                         number = memory.load(++self.ip);
                         self.gpr[regTo] = checkOperation(self.gpr[regTo] >>> number);
                         self.ip++;
