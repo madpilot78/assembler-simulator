@@ -265,34 +265,34 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     p2 = getValue(match[op2_group]);
 
                                     if (p1.type === "register" && p2.type === "register")
-                                        opCode = opcodes.ADD_REG_TO_REG;
+                                        opCode = opcodeOffset(opcodes.ADD_REG_TO_REG_A, p1.value);
                                     else if (p1.type === "register" && p2.type === "regaddress")
-                                        opCode = opcodes.ADD_REGADDRESS_TO_REG;
+                                        opCode = opcodeOffset(opcodes.ADD_REGADDRESS_TO_REG_A, p1.value);
                                     else if (p1.type === "register" && p2.type === "address")
-                                        opCode = opcodes.ADD_ADDRESS_TO_REG;
+                                        opCode = opcodeOffset(opcodes.ADD_ADDRESS_TO_REG_A, p1.value);
                                     else if (p1.type === "register" && p2.type === "number")
-                                        opCode = opcodes.ADD_NUMBER_TO_REG;
+                                        opCode = opcodeOffset(opcodes.ADD_NUMBER_TO_REG_A, p1.value);
                                     else
                                         throw "ADD does not support this operands";
 
-                                    code.push(opCode, p1.value, p2.value);
+                                    code.push(opCode, p2.value);
                                     break;
                                 case 'SUB':
                                     p1 = getValue(match[op1_group]);
                                     p2 = getValue(match[op2_group]);
 
                                     if (p1.type === "register" && p2.type === "register")
-                                        opCode = opcodes.SUB_REG_FROM_REG;
+                                        opCode = opcodeOffset(opcodes.SUB_REG_FROM_REG_A, p1.value);
                                     else if (p1.type === "register" && p2.type === "regaddress")
-                                        opCode = opcodes.SUB_REGADDRESS_FROM_REG;
+                                        opCode = opcodeOffset(opcodes.SUB_REGADDRESS_FROM_REG_A, p1.value);
                                     else if (p1.type === "register" && p2.type === "address")
-                                        opCode = opcodes.SUB_ADDRESS_FROM_REG;
+                                        opCode = opcodeOffset(opcodes.SUB_ADDRESS_FROM_REG_A, p1.value);
                                     else if (p1.type === "register" && p2.type === "number")
-                                        opCode = opcodes.SUB_NUMBER_FROM_REG;
+                                        opCode = opcodeOffset(opcodes.SUB_NUMBER_FROM_REG_A, p1.value);
                                     else
                                         throw "SUB does not support this operands";
 
-                                    code.push(opCode, p1.value, p2.value);
+                                    code.push(opCode, p2.value);
                                     break;
                                 case 'INC':
                                     p1 = getValue(match[op1_group]);

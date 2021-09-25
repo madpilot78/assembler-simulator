@@ -321,50 +321,242 @@ app.service('cpu', ['opcodes', 'memory', function(opcodes, memory) {
                         memory.store(indirectRegisterAddress(regTo), number);
                         self.ip++;
                         break;
-                    case opcodes.ADD_REG_TO_REG:
-                        regTo = checkGPR_SP(memory.load(++self.ip));
+                    case opcodes.ADD_REG_TO_REG_A:
+                        regTo = 0;
                         regFrom = checkGPR_SP(memory.load(++self.ip));
                         setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + getGPR_SP(regFrom)));
                         self.ip++;
                         break;
-                    case opcodes.ADD_REGADDRESS_TO_REG:
-                        regTo = checkGPR_SP(memory.load(++self.ip));
+                    case opcodes.ADD_REG_TO_REG_B:
+                        regTo = 1;
+                        regFrom = checkGPR_SP(memory.load(++self.ip));
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + getGPR_SP(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.ADD_REG_TO_REG_C:
+                        regTo = 2;
+                        regFrom = checkGPR_SP(memory.load(++self.ip));
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + getGPR_SP(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.ADD_REG_TO_REG_D:
+                        regTo = 3;
+                        regFrom = checkGPR_SP(memory.load(++self.ip));
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + getGPR_SP(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.ADD_REG_TO_REG_SP:
+                        regTo = 4;
+                        regFrom = checkGPR_SP(memory.load(++self.ip));
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + getGPR_SP(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.ADD_REGADDRESS_TO_REG_A:
+                        regTo = 0;
                         regFrom = memory.load(++self.ip);
                         setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + memory.load(indirectRegisterAddress(regFrom))));
                         self.ip++;
                         break;
-                    case opcodes.ADD_ADDRESS_TO_REG:
-                        regTo = checkGPR_SP(memory.load(++self.ip));
+                    case opcodes.ADD_REGADDRESS_TO_REG_B:
+                        regTo = 1;
+                        regFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + memory.load(indirectRegisterAddress(regFrom))));
+                        self.ip++;
+                        break;
+                    case opcodes.ADD_REGADDRESS_TO_REG_C:
+                        regTo = 2;
+                        regFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + memory.load(indirectRegisterAddress(regFrom))));
+                        self.ip++;
+                        break;
+                    case opcodes.ADD_REGADDRESS_TO_REG_D:
+                        regTo = 3;
+                        regFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + memory.load(indirectRegisterAddress(regFrom))));
+                        self.ip++;
+                        break;
+                    case opcodes.ADD_REGADDRESS_TO_REG_SP:
+                        regTo = 4;
+                        regFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + memory.load(indirectRegisterAddress(regFrom))));
+                        self.ip++;
+                        break;
+                    case opcodes.ADD_ADDRESS_TO_REG_A:
+                        regTo = 0;
                         memFrom = memory.load(++self.ip);
                         setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + memory.load(memFrom)));
                         self.ip++;
                         break;
-                    case opcodes.ADD_NUMBER_TO_REG:
-                        regTo = checkGPR_SP(memory.load(++self.ip));
+                    case opcodes.ADD_ADDRESS_TO_REG_B:
+                        regTo = 1;
+                        memFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + memory.load(memFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.ADD_ADDRESS_TO_REG_C:
+                        regTo = 2;
+                        memFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + memory.load(memFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.ADD_ADDRESS_TO_REG_D:
+                        regTo = 3;
+                        memFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + memory.load(memFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.ADD_ADDRESS_TO_REG_SP:
+                        regTo = 4;
+                        memFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + memory.load(memFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.ADD_NUMBER_TO_REG_A:
+                        regTo = 0;
                         number = memory.load(++self.ip);
                         setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + number));
                         self.ip++;
                         break;
-                    case opcodes.SUB_REG_FROM_REG:
-                        regTo = checkGPR_SP(memory.load(++self.ip));
+                    case opcodes.ADD_NUMBER_TO_REG_B:
+                        regTo = 1;
+                        number = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + number));
+                        self.ip++;
+                        break;
+                    case opcodes.ADD_NUMBER_TO_REG_C:
+                        regTo = 2;
+                        number = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + number));
+                        self.ip++;
+                        break;
+                    case opcodes.ADD_NUMBER_TO_REG_D:
+                        regTo = 3;
+                        number = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + number));
+                        self.ip++;
+                        break;
+                    case opcodes.ADD_NUMBER_TO_REG_SP:
+                        regTo = 4;
+                        number = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) + number));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_REG_FROM_REG_A:
+                        regTo = 0;
                         regFrom = checkGPR_SP(memory.load(++self.ip));
                         setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - self.gpr[regFrom]));
                         self.ip++;
                         break;
-                    case opcodes.SUB_REGADDRESS_FROM_REG:
-                        regTo = checkGPR_SP(memory.load(++self.ip));
+                    case opcodes.SUB_REG_FROM_REG_B:
+                        regTo = 1;
+                        regFrom = checkGPR_SP(memory.load(++self.ip));
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - self.gpr[regFrom]));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_REG_FROM_REG_C:
+                        regTo = 2;
+                        regFrom = checkGPR_SP(memory.load(++self.ip));
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - self.gpr[regFrom]));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_REG_FROM_REG_D:
+                        regTo = 3;
+                        regFrom = checkGPR_SP(memory.load(++self.ip));
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - self.gpr[regFrom]));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_REG_FROM_REG_SP:
+                        regTo = 4;
+                        regFrom = checkGPR_SP(memory.load(++self.ip));
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - self.gpr[regFrom]));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_REGADDRESS_FROM_REG_A:
+                        regTo = 0;
                         regFrom = memory.load(++self.ip);
                         setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - memory.load(indirectRegisterAddress(regFrom))));
                         self.ip++;
                         break;
-                    case opcodes.SUB_ADDRESS_FROM_REG:
-                        regTo = checkGPR_SP(memory.load(++self.ip));
+                    case opcodes.SUB_REGADDRESS_FROM_REG_B:
+                        regTo = 1;
+                        regFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - memory.load(indirectRegisterAddress(regFrom))));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_REGADDRESS_FROM_REG_C:
+                        regTo = 2;
+                        regFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - memory.load(indirectRegisterAddress(regFrom))));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_REGADDRESS_FROM_REG_D:
+                        regTo = 3;
+                        regFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - memory.load(indirectRegisterAddress(regFrom))));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_REGADDRESS_FROM_REG_SP:
+                        regTo = 4;
+                        regFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - memory.load(indirectRegisterAddress(regFrom))));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_ADDRESS_FROM_REG_A:
+                        regTo = 0;
                         memFrom = memory.load(++self.ip);
                         setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - memory.load(memFrom)));
                         self.ip++;
                         break;
-                    case opcodes.SUB_NUMBER_FROM_REG:
-                        regTo = checkGPR_SP(memory.load(++self.ip));
+                    case opcodes.SUB_ADDRESS_FROM_REG_B:
+                        regTo = 1;
+                        memFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - memory.load(memFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_ADDRESS_FROM_REG_C:
+                        regTo = 2;
+                        memFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - memory.load(memFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_ADDRESS_FROM_REG_D:
+                        regTo = 3;
+                        memFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - memory.load(memFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_ADDRESS_FROM_REG_SP:
+                        regTo = 4;
+                        memFrom = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - memory.load(memFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_NUMBER_FROM_REG_A:
+                        regTo = 0;
+                        number = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - number));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_NUMBER_FROM_REG_B:
+                        regTo = 1;
+                        number = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - number));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_NUMBER_FROM_REG_C:
+                        regTo = 2;
+                        number = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - number));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_NUMBER_FROM_REG_D:
+                        regTo = 3;
+                        number = memory.load(++self.ip);
+                        setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - number));
+                        self.ip++;
+                        break;
+                    case opcodes.SUB_NUMBER_FROM_REG_SP:
+                        regTo = 4;
                         number = memory.load(++self.ip);
                         setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - number));
                         self.ip++;
