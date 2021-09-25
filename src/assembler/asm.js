@@ -323,17 +323,17 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     p2 = getValue(match[op2_group]);
 
                                     if (p1.type === "register" && p2.type === "register")
-                                        opCode = opcodes.CMP_REG_WITH_REG;
+                                        opCode = opcodeOffset(opcodes.CMP_REG_WITH_REG_A, p1.value);
                                     else if (p1.type === "register" && p2.type === "regaddress")
-                                        opCode = opcodes.CMP_REGADDRESS_WITH_REG;
+                                        opCode = opcodeOffset(opcodes.CMP_REGADDRESS_WITH_REG_A, p1.value);
                                     else if (p1.type === "register" && p2.type === "address")
-                                        opCode = opcodes.CMP_ADDRESS_WITH_REG;
+                                        opCode = opcodeOffset(opcodes.CMP_ADDRESS_WITH_REG_A, p1.value);
                                     else if (p1.type === "register" && p2.type === "number")
-                                        opCode = opcodes.CMP_NUMBER_WITH_REG;
+                                        opCode = opcodeOffset(opcodes.CMP_NUMBER_WITH_REG_A, p1.value);
                                     else
                                         throw "CMP does not support this operands";
 
-                                    code.push(opCode, p1.value, p2.value);
+                                    code.push(opCode, p2.value);
                                     break;
                                 case 'JMP':
                                     p1 = getValue(match[op1_group]);

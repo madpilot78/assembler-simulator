@@ -611,26 +611,122 @@ app.service('cpu', ['opcodes', 'memory', function(opcodes, memory) {
                         setGPR_SP(regTo,checkOperation(getGPR_SP(regTo) - 1));
                         self.ip++;
                         break;
-                    case opcodes.CMP_REG_WITH_REG:
-                        regTo = checkGPR_SP(memory.load(++self.ip));
+                    case opcodes.CMP_REG_WITH_REG_A:
+                        regTo = 0;
                         regFrom = checkGPR_SP(memory.load(++self.ip));
                         checkOperation(getGPR_SP(regTo) - getGPR_SP(regFrom));
                         self.ip++;
                         break;
-                    case opcodes.CMP_REGADDRESS_WITH_REG:
-                        regTo = checkGPR_SP(memory.load(++self.ip));
+                    case opcodes.CMP_REG_WITH_REG_B:
+                        regTo = 1;
+                        regFrom = checkGPR_SP(memory.load(++self.ip));
+                        checkOperation(getGPR_SP(regTo) - getGPR_SP(regFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_REG_WITH_REG_C:
+                        regTo = 2;
+                        regFrom = checkGPR_SP(memory.load(++self.ip));
+                        checkOperation(getGPR_SP(regTo) - getGPR_SP(regFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_REG_WITH_REG_D:
+                        regTo = 3;
+                        regFrom = checkGPR_SP(memory.load(++self.ip));
+                        checkOperation(getGPR_SP(regTo) - getGPR_SP(regFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_REG_WITH_REG_SP:
+                        regTo = 4;
+                        regFrom = checkGPR_SP(memory.load(++self.ip));
+                        checkOperation(getGPR_SP(regTo) - getGPR_SP(regFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_REGADDRESS_WITH_REG_A:
+                        regTo = 0;
                         regFrom = memory.load(++self.ip);
                         checkOperation(getGPR_SP(regTo) - memory.load(indirectRegisterAddress(regFrom)));
                         self.ip++;
                         break;
-                    case opcodes.CMP_ADDRESS_WITH_REG:
-                        regTo = checkGPR_SP(memory.load(++self.ip));
+                    case opcodes.CMP_REGADDRESS_WITH_REG_B:
+                        regTo = 1;
+                        regFrom = memory.load(++self.ip);
+                        checkOperation(getGPR_SP(regTo) - memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_REGADDRESS_WITH_REG_C:
+                        regTo = 2;
+                        regFrom = memory.load(++self.ip);
+                        checkOperation(getGPR_SP(regTo) - memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_REGADDRESS_WITH_REG_D:
+                        regTo = 3;
+                        regFrom = memory.load(++self.ip);
+                        checkOperation(getGPR_SP(regTo) - memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_REGADDRESS_WITH_REG_SP:
+                        regTo = 4;
+                        regFrom = memory.load(++self.ip);
+                        checkOperation(getGPR_SP(regTo) - memory.load(indirectRegisterAddress(regFrom)));
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_ADDRESS_WITH_REG_A:
+                        regTo = 0;
                         memFrom = memory.load(++self.ip);
                         checkOperation(getGPR_SP(regTo) - memory.load(memFrom));
                         self.ip++;
                         break;
-                    case opcodes.CMP_NUMBER_WITH_REG:
-                        regTo = checkGPR_SP(memory.load(++self.ip));
+                    case opcodes.CMP_ADDRESS_WITH_REG_B:
+                        regTo = 1;
+                        memFrom = memory.load(++self.ip);
+                        checkOperation(getGPR_SP(regTo) - memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_ADDRESS_WITH_REG_C:
+                        regTo = 2;
+                        memFrom = memory.load(++self.ip);
+                        checkOperation(getGPR_SP(regTo) - memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_ADDRESS_WITH_REG_D:
+                        regTo = 3;
+                        memFrom = memory.load(++self.ip);
+                        checkOperation(getGPR_SP(regTo) - memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_ADDRESS_WITH_REG_SP:
+                        regTo = 4;
+                        memFrom = memory.load(++self.ip);
+                        checkOperation(getGPR_SP(regTo) - memory.load(memFrom));
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_NUMBER_WITH_REG_A:
+                        regTo = 0;
+                        number = memory.load(++self.ip);
+                        checkOperation(getGPR_SP(regTo) - number);
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_NUMBER_WITH_REG_B:
+                        regTo = 1;
+                        number = memory.load(++self.ip);
+                        checkOperation(getGPR_SP(regTo) - number);
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_NUMBER_WITH_REG_C:
+                        regTo = 2;
+                        number = memory.load(++self.ip);
+                        checkOperation(getGPR_SP(regTo) - number);
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_NUMBER_WITH_REG_D:
+                        regTo = 3;
+                        number = memory.load(++self.ip);
+                        checkOperation(getGPR_SP(regTo) - number);
+                        self.ip++;
+                        break;
+                    case opcodes.CMP_NUMBER_WITH_REG_SP:
+                        regTo = 4;
                         number = memory.load(++self.ip);
                         checkOperation(getGPR_SP(regTo) - number);
                         self.ip++;
