@@ -496,7 +496,7 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     checkNoExtraArg(instr, match[op2_group]);
 
                                     if (p1.type === "register")
-                                        opCode = opcodes.MUL_REG;
+                                        opCode = opcodeOffset(opcodes.MUL_REG_A, p1.value);
                                     else if (p1.type === "regaddress")
                                         opCode = opcodes.MUL_REGADDRESS;
                                     else if (p1.type === "address")
@@ -506,14 +506,16 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     else
                                         throw "MULL does not support this operand";
 
-                                    code.push(opCode, p1.value);
+                                    code.push(opCode);
+                                    if (p1.type !== "register")
+                                        code.push(p1.value);
                                     break;
                                 case 'DIV':
                                     p1 = getValue(match[op1_group]);
                                     checkNoExtraArg(instr, match[op2_group]);
 
                                     if (p1.type === "register")
-                                        opCode = opcodes.DIV_REG;
+                                        opCode = opcodeOffset(opcodes.DIV_REG_A, p1.value);
                                     else if (p1.type === "regaddress")
                                         opCode = opcodes.DIV_REGADDRESS;
                                     else if (p1.type === "address")
@@ -523,7 +525,9 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                     else
                                         throw "DIV does not support this operand";
 
-                                    code.push(opCode, p1.value);
+                                    code.push(opCode);
+                                    if (p1.type !== "register")
+                                        code.push(p1.value);
                                     break;
                                 case 'AND':
                                     p1 = getValue(match[op1_group]);

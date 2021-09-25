@@ -895,8 +895,23 @@ app.service('cpu', ['opcodes', 'memory', function(opcodes, memory) {
                     case opcodes.RET:
                         jump(pop());
                         break;
-                    case opcodes.MUL_REG: // A = A * REG
-                        regFrom = checkGPR(memory.load(++self.ip));
+                    case opcodes.MUL_REG_A: // A = A * A
+                        regFrom = 0;
+                        self.gpr[0] = checkOperation(self.gpr[0] * self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.MUL_REG_B: // A = A * B
+                        regFrom = 1;
+                        self.gpr[0] = checkOperation(self.gpr[0] * self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.MUL_REG_C: // A = A * C
+                        regFrom = 2;
+                        self.gpr[0] = checkOperation(self.gpr[0] * self.gpr[regFrom]);
+                        self.ip++;
+                        break;
+                    case opcodes.MUL_REG_D: // A = A * D
+                        regFrom = 3;
                         self.gpr[0] = checkOperation(self.gpr[0] * self.gpr[regFrom]);
                         self.ip++;
                         break;
@@ -915,8 +930,23 @@ app.service('cpu', ['opcodes', 'memory', function(opcodes, memory) {
                         self.gpr[0] = checkOperation(self.gpr[0] * number);
                         self.ip++;
                         break;
-                    case opcodes.DIV_REG: // A = A / REG
-                        regFrom = checkGPR(memory.load(++self.ip));
+                    case opcodes.DIV_REG_A: // A = A / A
+                        regFrom = 0;
+                        self.gpr[0] = checkOperation(division(self.gpr[regFrom]));
+                        self.ip++;
+                        break;
+                    case opcodes.DIV_REG_B: // A = A / B
+                        regFrom = 1;
+                        self.gpr[0] = checkOperation(division(self.gpr[regFrom]));
+                        self.ip++;
+                        break;
+                    case opcodes.DIV_REG_C: // A = A / C
+                        regFrom = 2;
+                        self.gpr[0] = checkOperation(division(self.gpr[regFrom]));
+                        self.ip++;
+                        break;
+                    case opcodes.DIV_REG_D: // A = A / D
+                        regFrom = 3;
                         self.gpr[0] = checkOperation(division(self.gpr[regFrom]));
                         self.ip++;
                         break;
