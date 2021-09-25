@@ -249,7 +249,27 @@ app.service('assembler', ['opcodes', function (opcodes) {
                                                 break;
                                         }
                                     else if (p1.type === "register" && p2.type === "address")
-                                        opCode = opcodes.MOV_ADDRESS_TO_REG;
+                                        switch (p1.value) {
+                                            case 0:
+                                                opCode = opcodes.MOV_ADDRESS_TO_REG_A;
+                                                break;
+
+                                            case 1:
+                                                opCode = opcodes.MOV_ADDRESS_TO_REG_B;
+                                                break;
+
+                                            case 2:
+                                                opCode = opcodes.MOV_ADDRESS_TO_REG_C;
+                                                break;
+
+                                            case 3:
+                                                opCode = opcodes.MOV_ADDRESS_TO_REG_D;
+                                                break;
+
+                                            default:
+                                                throw "Uknown register";
+                                                break;
+                                        }
                                     else if (p1.type === "register" && p2.type === "regaddress")
                                         opCode = opcodes.MOV_REGADDRESS_TO_REG;
                                     else if (p1.type === "address" && p2.type === "register")
@@ -287,7 +307,7 @@ app.service('assembler', ['opcodes', function (opcodes) {
 
                                     if (p1.type === "register" && p2.type === "register") {
                                         code.push(opCode, p1.value);
-                                    } else if (p1.type === "register" && p2.type === "number") {
+                                    } else if (p1.type === "register" && (p2.type === "number" || p2.type === "address")) {
                                         code.push(opCode, p2.value);
                                     } else {
                                         code.push(opCode, p1.value, p2.value);
